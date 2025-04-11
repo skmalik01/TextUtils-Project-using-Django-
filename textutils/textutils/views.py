@@ -31,7 +31,7 @@ def analyze(request):
                 analyzed = analyzed + char
         params = {"purpose" : 'Removed Punctuations', "analyzed_text" : analyzed}
         djtext = analyzed
-        # return render(request, 'analyze2.html', params)
+     
     
     if (fullcaps == 'on'):
         analyzed = ""
@@ -39,7 +39,7 @@ def analyze(request):
             analyzed = analyzed + char.upper()
         params = {"purpose" : 'Change to Uppercase', "analyzed_text" : analyzed}
         djtext = analyzed
-        # return render(request, 'analyze2.html', params)
+       
     
     if (newlineremover == 'on'):
         analyzed = ""
@@ -50,7 +50,7 @@ def analyze(request):
                 analyzed += " "
         params = {"purpose" : 'Remove Newlines', "analyzed_text" : analyzed}
         djtext = analyzed
-        # return render(request, 'analyze2.html', params)
+       
     
     if (extraspaceremover == 'on'):
         analyzed = ""
@@ -59,7 +59,7 @@ def analyze(request):
                 analyzed = analyzed + char
         params = {"purpose" : 'Remove Extra Spaces', "analyzed_text" : analyzed}
         djtext = analyzed
-        # return render(request, 'analyze2.html', params)
+
     
     if (charcount == 'on'):
         cleaned_text = djtext.replace(" ", "").replace("\n", "").replace("\r", "")
@@ -74,16 +74,3 @@ def about(request):
 
 def contact(request):
     return render(request, 'contact.html')
-
-
-# def capfirst(request):
-#     return HttpResponse("capitalize first")
-
-# def newlineremove(request):
-#     return HttpResponse("new line remove")
-
-# def spaceremove(request):
-#     return HttpResponse("space remove")
-
-# def charcount(request):
-#     return HttpResponse("Char count")
