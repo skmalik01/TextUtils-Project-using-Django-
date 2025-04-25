@@ -10,9 +10,35 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+
+      .alert strong {
+        color: #0f5132;
+      }
+
+      #successText {
+        font-weight: 500;
+      }
+
+      .container h1 {
+        font-weight: 500;
+      }
+
+      .alert {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand text-light" href="#">TextUtils</a>
         <button
@@ -55,8 +81,9 @@
       </div>
     </nav>
 
+    <!-- Success Alert with Typing Effect -->
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Success!</strong> You Text has been Analyzed.
+      <strong id="successText"></strong>
       <button
         type="button"
         class="btn-close"
@@ -66,11 +93,56 @@
     </div>
 
     <div class="container">
-        <h1>Your Analyzed Text - {{ purpose }}</h1>
-        <p>
-            <pre>{{ analyzed_text }}</pre>
-        </p>
+      <h1 id="pageTitle">Your Analyzed Text - {{ purpose }}</h1>
+      <p>
+        <pre>{{ analyzed_text }}</pre>
+      </p>
     </div>
+
+    <script>
+      // Typing animation for Success Message
+      const successMessage = "Success! Your text has been analyzed.";
+      const successElement = document.getElementById("successText");
+
+      let successIndex = 0;
+      let deleting = false;
+
+      function typeSuccessMessage() {
+        if (!deleting) {
+          successElement.textContent = successMessage.substring(0, successIndex + 1);
+          successIndex++;
+          if (successIndex === successMessage.length) {
+            deleting = true;
+            setTimeout(typeSuccessMessage, 1500);
+            return;
+          }
+        } else {
+          successElement.textContent = successMessage.substring(0, successIndex - 1);
+          successIndex--;
+          if (successIndex === 0) deleting = false;
+        }
+        setTimeout(typeSuccessMessage, deleting ? 30 : 40);
+      }
+
+      // Typing animation for Page Title
+      const pageTitleText = "Your Analyzed Text - {{ purpose }}";
+      const pageTitleElement = document.getElementById("pageTitle");
+
+      let titleIndex = 0;
+
+      function typePageTitle() {
+        pageTitleElement.textContent = pageTitleText.substring(0, titleIndex + 1);
+        titleIndex++;
+        if (titleIndex < pageTitleText.length) {
+          setTimeout(typePageTitle, 50);
+        }
+      }
+
+      window.onload = function () {
+        typeSuccessMessage();
+        typePageTitle();
+      };
+    </script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

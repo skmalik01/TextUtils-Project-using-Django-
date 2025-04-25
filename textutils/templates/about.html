@@ -1,92 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TextUtils.in</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand text-light" href="#">TextUtils</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active text-light" aria-current="page" href="/"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/about/">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/contact/">Contact Us</a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | TextUtils.in</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
 
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Welcome to TextUtils!</strong> You can enter any text in our
-      TextUtils platform.
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .about-card {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 60px auto;
+    }
+
+    .about-card h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .about-card ul {
+      margin-top: 15px;
+    }
+
+    .about-card p, .about-card li {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">TextUtils</a>
       <button
+        class="navbar-toggler"
         type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      ></button>
-    </div>
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="container">
-        <h1>About TextUtils</h1>
-        <p>This is TextUtils — A simple Django-based Text Utility Web Application created by Malik.</p>
-
-        <p>You can perform various text operations like:</p>
-        <ul>
-            <li>Remove Punctuation</li>
-            <li>Convert to Uppercase</li>
-            <li>Remove Extra Spaces</li>
-            <li>Remove New Lines</li>
-            <li>Count Characters</li>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/about/">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact/">Contact Us</a></li>
         </ul>
-
-        <p>This project is developed for learning purpose.</p>
-
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
     </div>
+  </nav>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+
+  <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+    <strong id="welcomeText"></strong>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <!-- About Content -->
+  <div class="about-card">
+    <h1>About TextUtils</h1>
+    <p>
+      <strong>TextUtils</strong> is a simple, clean, and powerful Django-based web application built by Malik for text transformation and analysis.
+    </p>
+
+    <p>✨ With TextUtils, you can easily perform the following operations:</p>
+    <ul>
+      <li>Remove Punctuation</li>
+      <li>Convert to Uppercase</li>
+      <li>Remove Extra Spaces</li>
+      <li>Remove New Lines</li>
+      <li>Count Characters</li>
+    </ul>
+
+    <p>This project is built for learning, exploring Django, and understanding how text manipulation works in real-time. Whether you're a student, developer, or just curious, TextUtils gives you a friendly interface to work with your content!</p>
+  </div>
+
+  <script>
+    const text = "Welcome to TextUtils! You can enter any text in our TextUtils platform.";
+    const element = document.getElementById("welcomeText");
+    let i = 0;
+    let deleting = false;
+
+    function type() {
+      if (!deleting) {
+        element.textContent = text.substring(0, i + 1);
+        i++;
+        if (i === text.length) {
+          deleting = true;
+          setTimeout(type, 1500);
+          return;
+        }
+      } else {
+        element.textContent = text.substring(0, i - 1);
+        i--;
+        if (i === 0) {
+          deleting = false;
+        }
+      }
+      setTimeout(type, deleting ? 30 : 40);
+    }
+
+    window.onload = type;
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

@@ -10,54 +10,69 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+
+      .alert strong {
+        color: #0f5132;
+      }
+
+      .contact-card {
+        background: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: auto;
+        margin-top: 50px;
+      }
+
+      #welcomeText {
+        font-weight: 500;
+      }
+
+      .alert {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
       <div class="container-fluid">
-        <a class="navbar-brand text-light" href="#">TextUtils</a>
+        <a class="navbar-brand" href="#">TextUtils</a>
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active text-light" aria-current="page" href="/"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/about/">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" href="/contact/">Contact Us</a>
-            </li>
+            <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact/">Contact Us</a></li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" />
+            <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
       </div>
     </nav>
 
+    <!-- Welcome Alert with Typing Effect -->
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Welcome to TextUtils!</strong> You can enter any text in our
-      TextUtils platform.
+      <strong id="welcomeText"></strong>
       <button
         type="button"
         class="btn-close"
@@ -67,54 +82,101 @@
     </div>
 
     <div class="container">
-    <form action="/analyze" method='post'> {% csrf_token %}
+      <form action="/analyze" method="post"> {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            ><span class="fw-bold" id="animatedLabel"></span></label
+          >
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            name="text"
+          ></textarea>
+        </div>
 
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label"
-          >Enter Your Text Here and let TextUtils do the magic!</label
-        >
-        <textarea
-          class="form-control"
-          id="exampleFormControlTextarea1"
-          rows="3"
-          name='text'
-        ></textarea>
+        <!-- Switches for Text Operations -->
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="removepunc" />
+          <label class="form-check-label" for="flexSwitchCheckDefault">Remove Punctuations</label>
         </div>
 
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="removepunc">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Remove Punctuations</label>
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="fullcaps" />
+          <label class="form-check-label" for="flexSwitchCheckDefault">UPPER CASE</label>
         </div>
 
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="fullcaps">
-            <label class="form-check-label" for="flexSwitchCheckDefault">UPPER CASE</label>
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="extraspaceremover" />
+          <label class="form-check-label" for="flexSwitchCheckDefault">Extra Space remover</label>
         </div>
 
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="extraspaceremover">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Extra Space remover</label>
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="newlineremover" />
+          <label class="form-check-label" for="flexSwitchCheckDefault">New line remover</label>
         </div>
 
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="newlineremover">
-            <label class="form-check-label" for="flexSwitchCheckDefault">New line remover</label>
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="charcount" />
+          <label class="form-check-label" for="flexSwitchCheckDefault">Count Character</label>
         </div>
 
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="charcount">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Count Character</label>
-        </div>
-      
-      <button type="submit" method='get' class="btn btn-dark mt-2">Analyze Text</button>
-
-    </form>
+        <button type="submit" class="btn btn-dark mt-2">Analyze Text</button>
+      </form>
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"
-    ></script>
+    <script>
+      const labelText = "Enter Your Text Here and let TextUtils do the magic!";
+      const labelElement = document.getElementById("animatedLabel");
+    
+      const welcomeText = "Welcome to TextUtils! You can enter any text in our TextUtils platform.";
+      const welcomeElement = document.getElementById("welcomeText");
+    
+      let labelIndex = 0;
+      let welcomeIndex = 0;
+      let labelDeleting = false;
+      let welcomeDeleting = false;
+    
+      function typeLabel() {
+        if (!labelDeleting) {
+          labelElement.textContent = labelText.substring(0, labelIndex + 1);
+          labelIndex++;
+          if (labelIndex === labelText.length) {
+            labelDeleting = true;
+            setTimeout(typeLabel, 1000);
+            return;
+          }
+        } else {
+          labelElement.textContent = labelText.substring(0, labelIndex - 1);
+          labelIndex--;
+          if (labelIndex === 0) labelDeleting = false;
+        }
+        setTimeout(typeLabel, labelDeleting ? 30 : 40);
+      }
+    
+      function typeWelcome() {
+        if (!welcomeDeleting) {
+          welcomeElement.textContent = welcomeText.substring(0, welcomeIndex + 1);
+          welcomeIndex++;
+          if (welcomeIndex === welcomeText.length) {
+            welcomeDeleting = true;
+            setTimeout(typeWelcome, 1500);
+            return;
+          }
+        } else {
+          welcomeElement.textContent = welcomeText.substring(0, welcomeIndex - 1);
+          welcomeIndex--;
+          if (welcomeIndex === 0) welcomeDeleting = false;
+        }
+        setTimeout(typeWelcome, welcomeDeleting ? 30 : 40);
+      }
+    
+      window.onload = function () {
+        typeLabel();
+        typeWelcome();
+      };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
